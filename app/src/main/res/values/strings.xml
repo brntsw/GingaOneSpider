@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GingaOneSpider</string>
     <string name="action_settings">Settings</string>
+    <string name="spider_img_description">Spider Man</string>
 </resources>
