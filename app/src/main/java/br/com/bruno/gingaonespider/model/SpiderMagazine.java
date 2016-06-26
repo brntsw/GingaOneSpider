@@ -1,17 +1,28 @@
 package br.com.bruno.gingaonespider.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 /**
  * Created by techresult on 03/06/2016.
  */
 public class SpiderMagazine {
 
+    @JsonProperty("title")
     private String title;
+    @JsonProperty("description")
     private String description;
-    private String onSaleDate;
+    @JsonProperty("dates")
+    private List<Dates> dates;
+    @JsonProperty("prices")
+    private List<Price> prices;
+    @JsonProperty("pageCount")
     private Integer pageCount;
-    private String pathImg;
-    private String extensionImg;
-
+    @JsonProperty("thumbnail")
+    private Thumbnail thumb;
+    @JsonProperty("images")
+    private List<ImageSpider> images;
 
     public String getTitle() {
         return title;
@@ -29,12 +40,20 @@ public class SpiderMagazine {
         this.description = description;
     }
 
-    public String getOnSaleDate() {
-        return onSaleDate;
+    public List<Dates> getDates() {
+        return dates;
     }
 
-    public void setOnSaleDate(String onSaleDate) {
-        this.onSaleDate = onSaleDate;
+    public void setDates(List<Dates> dates) {
+        this.dates = dates;
+    }
+
+    public List<Price> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
     }
 
     public Integer getPageCount() {
@@ -45,20 +64,19 @@ public class SpiderMagazine {
         this.pageCount = pageCount;
     }
 
-
-    public String getPathImg() {
-        return pathImg;
+    public Thumbnail getThumb() {
+        return thumb;
     }
 
-    public void setPathImg(String pathImg) {
-        this.pathImg = pathImg;
+    public void setThumb(Thumbnail thumb) {
+        this.thumb = thumb;
     }
 
-    public String getExtensionImg() {
-        return extensionImg;
+    public List<ImageSpider> getImages() {
+        return images;
     }
 
-    public void setExtensionImg(String extensionImg) {
-        this.extensionImg = extensionImg;
+    public void setImages(List<ImageSpider> images) {
+        this.images = images;
     }
 }

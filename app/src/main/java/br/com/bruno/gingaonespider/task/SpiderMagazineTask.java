@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -46,8 +49,12 @@ public class SpiderMagazineTask extends AsyncTask<Void, Void, List<SpiderMagazin
 
         try {
             Response response = client.newCall(request).execute();
-            Log.d("BODY", response.body().string());
-        } catch (IOException e) {
+            String responseBody = response.body().string();
+
+            JSONObject objMagazines = new JSONObject(responseBody);
+            String copyright = objMagazines.getString("copyright");
+
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
 
@@ -57,7 +64,7 @@ public class SpiderMagazineTask extends AsyncTask<Void, Void, List<SpiderMagazin
     protected void onPostExecute(List<SpiderMagazine> magazines){
         progress.dismiss();
 
-        if(magazines.size() > 0) {
+        if(magazines != null && magazines.size() > 0) {
             for (SpiderMagazine spiderMagazine : magazines) {
                 Log.d("Magazine", spiderMagazine.getTitle());
             }
