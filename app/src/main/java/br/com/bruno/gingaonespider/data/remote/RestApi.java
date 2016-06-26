@@ -1,7 +1,5 @@
 package br.com.bruno.gingaonespider.data.remote;
 
-import android.database.Observable;
-
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +13,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.QueryMap;
+import rx.Observable;
 
 /**
  * Created by Bruno on 26/06/2016.
@@ -22,7 +21,7 @@ import retrofit2.http.QueryMap;
 public interface RestApi {
 
     @Headers({"Accept: application/json", "Content-type: application/json"})
-    @GET(UrlServer.BASE_URL)
+    @GET(UrlServer.URL_MAGAZINES)
     Observable<Response<SpiderMagazine>> getMagazines(@QueryMap Map<String, String> params);
 
     class Builder {
@@ -45,7 +44,7 @@ public interface RestApi {
             OkHttpClient client = getOkHttpClient(getLoggingInterceptor());
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(UrlServer.URL_MAGAZINES)
+                    .baseUrl(UrlServer.BASE_URL)
                     .addConverterFactory(JacksonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(client)

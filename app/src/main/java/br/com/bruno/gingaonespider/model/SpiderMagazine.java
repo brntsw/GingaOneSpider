@@ -1,5 +1,7 @@
 package br.com.bruno.gingaonespider.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -7,18 +9,22 @@ import java.util.List;
 /**
  * Created by techresult on 03/06/2016.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SpiderMagazine {
 
     @JsonProperty("title")
     private String title;
     @JsonProperty("description")
     private String description;
+    @JsonProperty("copyright")
+    private String copyright;
     @JsonProperty("dates")
     private List<Dates> dates;
     @JsonProperty("prices")
     private List<Price> prices;
     @JsonProperty("pageCount")
-    private Integer pageCount;
+    private int pageCount;
     @JsonProperty("thumbnail")
     private Thumbnail thumb;
     @JsonProperty("images")
@@ -40,6 +46,14 @@ public class SpiderMagazine {
         this.description = description;
     }
 
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
     public List<Dates> getDates() {
         return dates;
     }
@@ -56,11 +70,11 @@ public class SpiderMagazine {
         this.prices = prices;
     }
 
-    public Integer getPageCount() {
+    public int getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(Integer pageCount) {
+    public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
 
